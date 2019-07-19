@@ -11,15 +11,18 @@ namespace PredictNumbers
         static void Main(string[] args)
         {
             int i = 0;
-            int prevNumber = 0;
-            int count = 0;
 
             List<int> numberSequence = new List<int>();
             List<int> numberSequenceNext = new List<int>();
 
             numberSequence.Add(1);
 
-            while (i < 6)
+            foreach (var number in numberSequence)
+            {
+                Console.WriteLine(number);
+            }
+
+            while (i < 10)
             {
                 if (numberSequenceNext.Count > 0)
                 {
@@ -33,41 +36,37 @@ namespace PredictNumbers
                     numberSequenceNext.Clear();
                 }
 
-                prevNumber = 0;
-                count = 0;
+                int prevNumber = 0;
+                int count = 0;
 
                 foreach (var number in numberSequence)
                 {
-                    count++;
-
                     if (prevNumber == 0)
                         prevNumber = number;
 
                     if (number != prevNumber)
                     {
                         numberSequenceNext.Add(count);
-                        numberSequenceNext.Add(number);
+                        numberSequenceNext.Add(prevNumber);
 
-                        count = 0;
+                        count = 1;
                     }
+                    else count++;
 
                     prevNumber = number;
                 }    
 
-                if (count !=0)
-                {
-                    numberSequenceNext.Add(count);
-                    numberSequenceNext.Add(prevNumber);
-                }
+                numberSequenceNext.Add(count);
+                numberSequenceNext.Add(prevNumber);
 
-                i++;
-                
                 foreach (var number in numberSequenceNext)
                 {
                     Console.Write(number.ToString() + ",");
                 }
 
                 Console.WriteLine();
+
+                i++;
             }    
         }
     }
