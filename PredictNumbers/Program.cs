@@ -22,7 +22,7 @@ namespace PredictNumbers
                 Console.WriteLine(number);
             }
 
-            while (i < 10)
+            while (i <= 11)
             {
                 if (numberSequenceNext.Count > 0)
                 {
@@ -59,12 +59,17 @@ namespace PredictNumbers
                 numberSequenceNext.Add(count);
                 numberSequenceNext.Add(prevNumber);
 
+                var numbers = new StringBuilder();
+
                 foreach (var number in numberSequenceNext)
                 {
-                    Console.Write(number.ToString() + ",");
+                    numbers.Append(number.ToString());
+                    numbers.Append(",");
                 }
 
-                Console.WriteLine();
+                numbers = numbers.Remove(numbers.Length - 1, 1);
+
+                Console.WriteLine(numbers);
 
                 i++;
             }    
